@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página No Encontrada - 404</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        .error-container { border: 1px solid #ccc; padding: 20px; max-width: 500px; margin: 0 auto; }
-        input[type="text"] { width: 80%; padding: 8px; margin-bottom: 10px; }
-        input[type="submit"] { padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Demostración de HTML Injection</title>
 </head>
 <body>
-    <div class="error-container">
-        <h1>Error 404: Página No Encontrada</h1>
-        <p>Lo sentimos, la página que buscas no existe en este servidor.</p>
-        <p>Puedes regresar a la <a href="/">página principal</a>.</p>
+  <h1>Formulario de búsqueda</h1>
+  <form onsubmit="return mostrarResultado()">
+    <input type="text" id="inputBusqueda" placeholder="Escribe algo">
+    <input type="submit" value="Buscar">
+  </form>
 
-        <h3>Formulario de Prueba de Seguridad (Inyección HTML)</h3>
-        <form action="#" method="get">
-            <label for="buscar">Buscar algo:</label><br>
-            <input type="text" id="buscar" name="query" placeholder="Introduce tu búsqueda aquí"><br>
-            <input type="submit" value="Enviar Consulta">
-        </form>
-        <p>Intenta inyectar código HTML en el campo de búsqueda (ej: <code>&lt;script&gt;alert('XSS');&lt;/script&gt;</code>).</p>
-    </div>
+  <h2>Resultado:</h2>
+  <div id="resultado"></div>
+
+  <script>
+    function mostrarResultado() {
+      var valor = document.getElementById("inputBusqueda").value;
+      document.getElementById("resultado").innerHTML = valor; // ❌ vulnerable
+      return false; // evita el envío real del formulario
+    }
+  </script>
 </body>
 </html>
