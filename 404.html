@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Demostración de HTML Injection</title>
+  <title>Seguridad HTML Injection</title>
 </head>
 <body>
   <h1>Formulario de búsqueda</h1>
@@ -17,8 +17,8 @@
   <script>
     function mostrarResultado() {
       var valor = document.getElementById("inputBusqueda").value;
-      document.getElementById("resultado").innerHTML = valor; // ❌ vulnerable
-      return false; // evita el envío real del formulario
+      document.getElementById("resultado").innerHTML = valor; //  vulnerable
+      return False; // evita el envío real del formulario
     }
   </script>
 </body>
